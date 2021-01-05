@@ -1,4 +1,5 @@
 // File: @openzeppelin/contracts/math/SafeMath.sol
+
 // SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
@@ -161,7 +162,7 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/GSN/Context.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -188,7 +189,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -258,7 +259,7 @@ abstract contract Ownable is Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -338,7 +339,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -646,7 +647,7 @@ contract ERC20 is Context, IERC20 {
 
 // File: contracts/IStaking.sol
 
-
+// SPDX-License-Identifier: MIT
 pragma solidity 0.7.6;
 
 /**
@@ -693,7 +694,7 @@ abstract contract IStaking {
 
 // File: contracts/TokenPool.sol
 
-
+// SPDX-License-Identifier: MIT
 pragma solidity 0.7.6;
 
 
@@ -738,7 +739,7 @@ contract TokenPool is Ownable {
 
 // File: contracts/TokenGeyser.sol
 
-
+// SPDX-License-Identifier: MIT
 pragma solidity 0.7.6;
 
 
@@ -767,18 +768,6 @@ pragma solidity 0.7.6;
 contract TokenGeyser is IStaking, Ownable {
     using SafeMath for uint256;
 
-    event Staked(
-        address indexed user,
-        uint256 amount,
-        uint256 total,
-        bytes data
-    );
-    event Unstaked(
-        address indexed user,
-        uint256 amount,
-        uint256 total,
-        bytes data
-    );
     event TokensClaimed(address indexed user, uint256 amount);
     event TokensLocked(uint256 amount, uint256 durationSec, uint256 total);
     // amount: Unlocked tokens, total: Total locked tokens
