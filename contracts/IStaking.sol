@@ -19,15 +19,14 @@ abstract contract IStaking {
         bytes data
     );
 
-    function stake(uint256 amount, bytes calldata data) virtual external;
+    function stake(uint256 amount) virtual external;
 
     function stakeFor(
         address user,
-        uint256 amount,
-        bytes calldata data
+        uint256 amount
     ) virtual external;
 
-    function unstake(uint256 amount, bytes calldata data) virtual external;
+    function unstake(uint256 amount) virtual external;
 
     function totalStakedFor(address addr) virtual public view returns (uint256);
 

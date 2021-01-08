@@ -162,7 +162,7 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/GSN/Context.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -189,7 +189,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -213,7 +213,7 @@ abstract contract Ownable is Context {
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
-    constructor () internal {
+    constructor () {
         address msgSender = _msgSender();
         _owner = msgSender;
         emit OwnershipTransferred(address(0), msgSender);
@@ -259,7 +259,7 @@ abstract contract Ownable is Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -339,7 +339,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -392,7 +392,7 @@ contract ERC20 is Context, IERC20 {
      * All three of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor (string memory name_, string memory symbol_) public {
+    constructor (string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
         _decimals = 18;
@@ -647,7 +647,7 @@ contract ERC20 is Context, IERC20 {
 
 // File: contracts/IStaking.sol
 
-// SPDX-License-Identifier: MIT
+
 pragma solidity 0.7.6;
 
 /**
@@ -668,15 +668,14 @@ abstract contract IStaking {
         bytes data
     );
 
-    function stake(uint256 amount, bytes calldata data) virtual external;
+    function stake(uint256 amount) virtual external;
 
     function stakeFor(
         address user,
-        uint256 amount,
-        bytes calldata data
+        uint256 amount
     ) virtual external;
 
-    function unstake(uint256 amount, bytes calldata data) virtual external;
+    function unstake(uint256 amount) virtual external;
 
     function totalStakedFor(address addr) virtual public view returns (uint256);
 
@@ -694,7 +693,7 @@ abstract contract IStaking {
 
 // File: contracts/TokenPool.sol
 
-// SPDX-License-Identifier: MIT
+
 pragma solidity 0.7.6;
 
 
@@ -739,12 +738,8 @@ contract TokenPool is Ownable {
 
 // File: contracts/TokenGeyser.sol
 
-// SPDX-License-Identifier: MIT
+
 pragma solidity 0.7.6;
-
-
-
-
 
 
 /**
@@ -887,9 +882,8 @@ contract TokenGeyser is IStaking, Ownable {
     /**
      * @dev Transfers amount of deposit tokens from the user.
      * @param amount Number of deposit tokens to stake.
-     * @param data Not used.
      */
-    function stake(uint256 amount, bytes calldata data) external override {
+    function stake(uint256 amount) external override {
         _stakeFor(msg.sender, msg.sender, amount);
     }
 
@@ -897,12 +891,10 @@ contract TokenGeyser is IStaking, Ownable {
      * @dev Transfers amount of deposit tokens from the caller on behalf of user.
      * @param user User address who gains credit for this stake operation.
      * @param amount Number of deposit tokens to stake.
-     * @param data Not used.
      */
     function stakeFor(
         address user,
-        uint256 amount,
-        bytes calldata data
+        uint256 amount
     ) external override onlyOwner {
         _stakeFor(msg.sender, user, amount);
     }
@@ -969,9 +961,8 @@ contract TokenGeyser is IStaking, Ownable {
      * @dev Unstakes a certain amount of previously deposited tokens. User also receives their
      * alotted number of distribution tokens.
      * @param amount Number of deposit tokens to unstake / withdraw.
-     * @param data Not used.
      */
-    function unstake(uint256 amount, bytes calldata data) override external {
+    function unstake(uint256 amount) override external {
         _unstake(amount);
     }
 
